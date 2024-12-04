@@ -20,11 +20,6 @@ jobs:
         export IMG=ttl.sh/saymololy/controller:1h
         echo "IMG=${IMG}" >> $GITHUB_ENV
 
-    - name: Install dependencies
-      run: |
-        ./configure
-        make
-
     - name: Build Docker image
       run: make docker-build
 
