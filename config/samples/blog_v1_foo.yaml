@@ -1,0 +1,10 @@
+apiVersion: blog.mydomain.com/v1
+kind: Foo
+metadata:
+  labels:
+    app.kubernetes.io/name: controller
+    app.kubernetes.io/managed-by: kustomize
+  name: foo-sample
+spec:
+  image: ttl.sh/saymololy/controller:1h
+  replicas: 6
