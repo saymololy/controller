@@ -1,0 +1,32 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up environment
+      run: |
+        export IMG=ttl.sh/saymololy/controller:1h
+        echo "IMG=${IMG}" >> $GITHUB_ENV
+
+    - name: Install dependencies
+      run: |
+        ./configure
+        make
+
+    - name: Build Docker image
+      run: make docker-build
+
+    - name: Push Docker image
+      run: make docker-push
